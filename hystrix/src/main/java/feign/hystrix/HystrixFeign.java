@@ -59,8 +59,7 @@ public final class HystrixFeign {
      * @see #target(Class, String, Object)
      */
     public <T> T target(Target<T> target, T fallback) {
-      return build(fallback != null ? new FallbackFactory.Default<T>(fallback) : null)
-          .newInstance(target);
+      return build(fallback != null ? new FallbackFactory.Default<T>(fallback) : null).newInstance(target);
     }
 
     /**

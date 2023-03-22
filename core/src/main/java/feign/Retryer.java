@@ -58,6 +58,7 @@ public interface Retryer extends Cloneable {
       }
 
       long interval;
+      // HTTP 503 额外处理
       if (e.retryAfter() != null) {
         interval = e.retryAfter().getTime() - currentTimeMillis();
         if (interval > maxPeriod) {
@@ -67,6 +68,7 @@ public interface Retryer extends Cloneable {
           return;
         }
       } else {
+        // 设置重试时间间隔
         interval = nextMaxInterval();
       }
       try {
